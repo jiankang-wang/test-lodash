@@ -25,7 +25,7 @@
         _.differenceBy([3.1, 2.2, 1.3], [3.1], Math.floor) // [2.2, 1.3]
         _.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x') // [{ 'x': 2 }]
       
-      // 6:differenceWith(array, [values], [comparator]) // 返回一个条件限制(比较器)的具有唯一array的新的数组， 每一个值不包含在其他给定的数组中
+      // 6:_.differenceWith(array, [values], [comparator]) // 返回一个条件限制(比较器)的具有唯一array的新的数组， 每一个值不包含在其他给定的数组中
         _.differenceWith([{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }], [{ 'x': 1, 'y': 2 }], _.isEqual) // [{ 'x': 2. 'y': 1 }]
 
       // 7:-.drop(array, [n=1]) 返回一个新的数组, 默认值n 等于1,并且n可以等于0(表示原样输出) 从前进行切片
@@ -66,18 +66,73 @@
         _.head([1, 2, 3]) // 1
         _.head([]) // undefined
 
-      // 13:-.flatten(array) 减少[一级]array嵌套深度。
+      // 13:_.flatten(array) 减少[一级]array嵌套深度。
         _.flatten([1, [2, 3], [4], [5]]) // [1, 2, 3, 4, 5]
 
       // 14:_.flattenDeep(array) 将array递归为一维数组
         _.flattenDeep([1, [2, [3, 4]], 5]) // [1, 2, 3, 4, 5]
 
-      //15: _.flatterDepth(array, [depth=1]) 根据 depth 递归减少 array 的嵌套层级
+      // 15:_.flatterDepth(array, [depth=1]) 根据 depth 递归减少 array 的嵌套层级
        _.flattenDepth([1, [2, [3, [4]], 5]], 1) // [1, 2, [3, [4]], 5]
 
-      //16: _.fromPairs(pairs)
+      // 16:_.fromPairs(pairs)
       // 与_.toPairs正好相反；这个方法返回一个由键值对pairs构成的对象。
         _.fromPairs([['key', 1], ['key2', 2]]) // { key: 1, key2: 2 }
+
+      // 17:_.indexOf(array, value, [formIndex=0]) 返回首次 value 在数组array中被找到的 索引值， 如果 fromIndex 为负值，将从数组array尾端索引进行匹配。
+        _.indexOf([1, 2, 1, 2], 2) // 1 
+        _.indexOf([1, 2, 1, 2], 2, 2) // 3
+
+      // 18:_.initial 获取数组array中除了最后一个元素之外的所有元素      
+        _.initial([1, 2, 3]) // [1, 2]
+
+      // 19:_.intersection([arrays]) 返回数组结果为数组的给定数组的交集
+        _.intersection([1, 2], [2, 3], [2, 4]) // [2]
+
+      // 20:-.intersectionBy([arrays], [iteratee=_.identity]) 返回一个新的数组根据条件处理之后
+        _.intersectionBy([2.1, 1.2], [4.3, 2.4], Math.floor) // [2.1]
+        _.intersectionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x') // [{ 'x': 1 }]
+
+      // 21:_.intersectionWith([arrays], [comparator])
+        var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+        var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+        _.intersectionWith(objects, others, _.isEqual) // [{ 'x': 1, 'y': 2 }]
+
+      // 22:_.join(array, [separator=','])
+        _.join(['a', 'b', 'c'])  // a,b,c
+        _.join(['a', 'b', 'c'], '~') // a~b~c
+
+      // 23:_.last(array) 返回一个array中最后一个元素
+        _.last([1, 2, 3]) // 3
+
+      // 24:_.nth(array, [n=0])返回array数组的第n个元素。如果n为负数，则返回从数组结尾开始的第n个元素， 新数组
+        _.nth([1, 2, 3, 4], 1) // 2
+
+
+
+
+
+
+///////////////////////////////改变原数组////////////////////////////////////////////////////////////////////////
+      // 25:-.pull(array, [values])  改变元数组（移除array数组里面values的值
+        var array = [1, 2, 3, 1, 5]
+        _.pull(array, 2, 3) // [1, 1, 5]
+      
+      // 26:_.pullAll(array, values)  改变原数组
+        var demo = [1, 2, 3, 1, 5]
+        _.pullAll(demo, [2, 3]) // demo 等于 [1, 1, 5]
+
+      // 27:_.pullAllBy(array, values, [iteratee=_.identity]) // 条件判断  改变原数组
+        var demoTwo = [{ 'x': 1 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }]
+        _.pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x') // demoTwo [{ 'x': 2 }]
+
+      // 28:_.pullAllWith(array, values,  [comparator]) 
+        var demotThree = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }]
+        _.pullAllWith(array, [{ 'x': 3, 'y': 4 }], _.isEqual) // demoThree [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
+
+      // 29:_.pullAt(array, [indexs]) 移除原数组中索引下标为index的元素，返回的结果是移除的元素组成的数组
+        var demoFour = [5, 10, 15, 20]
+        var event = _.pullAt(demoFour, [1, 3]) // demoFour [5, 15] event [10, 20]
 
   </script>
 </head>
