@@ -175,9 +175,9 @@
         _.unionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x') // [{ 'x': 1 }, { 'x': 2 }]
 
       // 37: _.unionWith([arrays], [comparator]) 绝对条件返回一个联合数组， 也就是两个或者多个数组的并集 返回的数组中元素是不重复的
-      var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
-      var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }]
-      _.unionWith(objects, others, _.isEqual) // [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+        var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
+        var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }]
+        _.unionWith(objects, others, _.isEqual) // [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
 
   </script>
 </head>
