@@ -36,15 +36,88 @@
     ]
     _.filter(users, (o) => o.active === true)  // [{ 'user': 'barney', 'age': 36, 'active': true }]
 
-    // 6: _.find(collection, [predicate=_.identity], [fromIndex=0]) // 返回第一个为真值的元素
-    var users = [
-      { 'user': 'barney',  'age': 36, 'active': true },
-      { 'user': 'fred',    'age': 40, 'active': false },
-      { 'user': 'pebbles', 'age': 1,  'active': true }
-    ]
-    _.find(users, (o) => o.age < 40) // { 'user': 'barney',  'age': 36, 'active': true }
+    // 6: _.find(collection, [predicate=_.identity], [fromIndex=0]) // (从左往右)返回第一个为真值的元素， 也可以传入索引， 从第几个开始找， 找到一个就返回
+      var users = [
+        { 'user': 'barney',  'age': 36, 'active': true },
+        { 'user': 'fred',    'age': 40, 'active': false },
+        { 'user': 'pebbles', 'age': 1,  'active': true }
+      ]
+      _.find(users, (o) => o.age < 40) // { 'user': 'barney',  'age': 36, 'active': true }
 
+    // 7: _.findLast(collection, [predicate=_.identity], [fromIndex=0]) // (从右往左)返回第一个为真值的元素， 也可以传入索引， 从第几个开始找， 找到一个就返回
+      var users = [
+        { 'user': 'barney',  'age': 36, 'active': true },
+        { 'user': 'fred',    'age': 40, 'active': false },
+        { 'user': 'pebbles', 'age': 1,  'active': true }
+      ]
+      _.findLast(users, (o) => o.age < 40) // { 'user': 'pebbles', 'age': 1,  'active': true }
 
+     // 8: _.flatMap(collection, [iteratee=_.identity]) 返回新的扁平化数组， collection（集合）中的每一个值经过 iteratee（迭代函数） 处理后返回的结果，并且扁平化合并 
+      var duplicat = n => [n, n]
+      _.flatMap([1, 2], duplicat) // [1, 1, 2, 2]
+
+    // 9: _.flatmapDeep(collection, [iteratee=_.identity]) 返回新的扁平化数组， 区别在于持续扁平化处理
+      var duplicate = n => [[[n, n]]]
+      _.flatMapDeep([1, 2], duplicate) // [1, 1, 2, 2]
+
+    // 10: _.flatMapDepth(collection, [iteratee=_.identity], [depth=1]) 返回一个新的扁平化数据， 区别在于根据depth的值进行持续化扁平处理
+      var duplicate = n => [[[n, n]]]
+      _.flatMapDepth([1, 2], duplicate, 2) // [[1, 1], [2, 2]]
+
+    // 11: _.groupBy(collection, [iteratee=_.identity]) 返回一个组成聚合的对象
+      _.groupBy([5.1, 6.3, 5.9], Math.floor) // {'5': [5.1, 5.9], '6': [6.3]}
+      _.groupBy([5.1, 5.2, 4.1]) // {'4.1': ['4.1'], '5.1': ['5.1'], '5.2': ['5.2']}
+      _.groupBy(['one', 'two', 'three'], 'length') // { '3': ['one', 'two'], '5': ['three'] }
+      _.groupBy([{ name: '111', id: 1 }, { name: '111', id: 2 }, {name: '222', id: 3}], 'name') // { 111: [{ name: 111, id: 1 }, {name: 111, id: 2}], 222: [{ name: '222',id: 3 }] }
+
+    // 12: _.includes(collection, value, [fromIndex=0]) 如果查到则返回true, 否则返回false
+      _.includes([1, 2, 3], 1)  // true
+      _.includes([1, 2, 3], 1, 2) // false
+      _.includes({ 'user': 'fred', 'age': 40 }, 'fred') // true
+      _.includes('pebbles', 'eb') // true
+
+    // 13: -.invokeMap(collection, path, [args]) 返回结果数组
+      _.invokeMap([[5, 1, 7], [3, 2, 1]], 'sort') // [[1, 5, 7], [1, 2, 3]]
+      _.invokeMap([123, 456], String.prototype.split, '') // [['1', '2', '3'], [4, 5, 6]]
+
+    // 14: _.keyBy(collection, [iteratee=_.identity])  返回一个组成聚合的对象
+      var array = [
+        { 'dir': 'left', 'code': 97 },
+        { 'dir': 'right', 'code': 100 }
+      ];
+      _.keyBy(array, (o) => String.fromCharCode(o.code) ) // { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+      _.keyBy(array, 'dir') // { 'left': { 'dir': 'left', 'code': 97 }, 'right': { { 'dir': 'right', 'code': 100 } } }
+
+    // 15: _.map(collection, [iteratee=_.identity]) 返回映射后的数组
+      _.map([10, 20], (n) => n * n) // [100, 400]
+      _.map([{'name': 'wjk', age: 10}, { 'name': 'wcj', age: 19 }, { 'name': 'demo', age: 30 }], (item) => ({ ...item, age: item.age * 10 }))
+    
+    // 16: _.orderBy(collection, [iteratees=[_.identity]], [orders]) 返回条件排序后的数据
+      var users = [
+        { 'user': 'fred',   'age': 48 },
+        { 'user': 'barney', 'age': 34 },
+        { 'user': 'fred',   'age': 40 },
+        { 'user': 'barney', 'age': 36 }
+      ]
+      // 以 `user` 升序排序 再  `age` 以降序排序
+        _.orderBy(users, ['user', 'age'], ['asc', 'desc']) // [{ 'user': 'barney', 'age': 36 }, { 'user': 'barney', 'age': 34 }, { 'user': 'fred',   'age': 48 }, { 'user': 'fred',   'age': 40 }]
+    
+    // 17: _.partition(collection, [predicate=_.identity]) 条件判断 返回元素分组后的数组 第一组包含predicate（断言函数）返回为 truthy（真值）的元素 第二组包含predicate（断言函数）返回为 falsey（假值）的元素
+      var users = [
+        { 'user': 'barney',  'age': 36, 'active': false },
+        { 'user': 'fred',    'age': 40, 'active': true },
+        { 'user': 'pebbles', 'age': 1,  'active': false }
+      ]
+      _.partition(users, (o) => o.active ) // [[{ 'user': 'fred', 'age': 40, 'active': true }], [{ 'user': 'barney',  'age': 36, 'active': false }, { 'user': 'pebbles', 'age': 1,  'active': false } ]]
+
+    // 18: _.reduce(collection, [iteratee=_.identity], [accumulator]) 返回累计处理后的值  返回值的顺序不能保证
+      _.reduce([1, 2], (sum, o) => sum+= o, 0 ) // 3
+      _.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+        (result[value] || (result[value] = [])).push(key);
+        return result;
+      }, {}) // { '1': ['a', 'c'], '2': ['b'] }
+
+      
   </script>
 </head>
 <body>
