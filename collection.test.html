@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lodash.js"></script>
+  <script>
+    // 1: -.countBy(collection, [iteratee=_.identity]) 返回一个对象 统计每一个元素在集合中出现的次数
+      _.countBy([1, 2, 3, 2, 4 , 8, 8, 8]) // {1: 1, 2: 2, 3: 1, 4: 1, 8: 3}
+      _.countBy(['one', 'two', 'three']) // {'one': 1, 'two': 1, 'three': 1}
+      _.countBy([6.1, 4.2, 6.3], Math.floor) // { '4': 1, '6': 2 }
+      _.countBy(['one', 'two', 'three'], 'length') // { '3': 2, '5': 1 }
+
+    // 2: _.forEach(collection, [iteratee=_.identity])  从前往后进行遍历输出
+      // _([1, 2]).forEach((val) => { console.log(val) }) // 输出 1 2
+      // _({'a': 1, 'b': 2}).forEach((item, index) => { console.log(index, item) }) // a 1   b 2
+
+    // 3: _.forEachRight(collection, [iteratee=_.identity]) 从后往前遍历输出
+      // _([1, 2]).forEachRight((val) => { console.log(val) }) // 输出 2 1  
+      // _({'a': 1, 'b': 2}).forEachRight((item, index) => { console.log(index, item) })  // b 2   a 1
+
+    // 4: _.every(collection, [predicate=_.identity]) 返回一个布尔值， 全部为真则为真， 否则为假
+      _.every([1, 2, false, true, '', undefined]) // false
+      var users = [
+        { 'user': 'barney', 'age': 36, 'active': true },
+        { 'user': 'fred',   'age': 40, 'active': true }
+      ];
+      _.every(users, (o) => o.active === true) // true
+
+    // 5: _.filter(collection, [predicate=_.identity]) 返回一个过滤后的新数组
+    var users = [
+      { 'user': 'barney', 'age': 36, 'active': true },
+      { 'user': 'fred',   'age': 40, 'active': false }
+    ]
+    _.filter(users, (o) => o.active === true)  // [{ 'user': 'barney', 'age': 36, 'active': true }]
+
+    // 6: _.find(collection, [predicate=_.identity], [fromIndex=0]) // 返回第一个为真值的元素
+    var users = [
+      { 'user': 'barney',  'age': 36, 'active': true },
+      { 'user': 'fred',    'age': 40, 'active': false },
+      { 'user': 'pebbles', 'age': 1,  'active': true }
+    ]
+    _.find(users, (o) => o.age < 40) // { 'user': 'barney',  'age': 36, 'active': true }
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
