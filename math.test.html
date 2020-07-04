@@ -7,9 +7,69 @@
   <title>Document</title>
   <script src="./lodash.js"></script>
   <script>
-      // _.add(augend, addend) 返回两个数累和
+      // 1: _.add(augend, addend) 返回两个数累和
         _.add(1, 2) // 3
-        console.log(_.add(1, 2))
+
+      // 2: _.ceil(number, [precision=0]) 向上取整， 可以设置保留小数位置
+        _.ceil(4.01) // 5
+        _.ceil(4.001, 2) // 4.01
+
+      // 3: _.divede(dividend, divisor)  取商
+        _.divide(6, 4) // 1.5
+
+      // 4: _.floor(number, [precision=0]) 向下取整 可以设置保留小数保留个数
+        _.floor(4.01) // 4
+        _.floor(4.013, 2) // 4.01
+
+      // 5: _.max(array) 获取数组中的最大值  如果 array 是 空的或者假值将会返回 undefined
+      //  _min(array) 刚好相反 返回数组中的最小值
+        _.max([1, 2, 4, 10, 78]) // 78 
+
+      // 6: _.maxBy(array, [iteratee=_.identity]) 条件筛选 返回最大值
+      // _.minBy(array, [iteratee=_.identity]) 条件筛选 返回最小值
+        _.maxBy([{ 'n': 1 }, { 'n': 2 }], (o) => o.n) // { 'n': 2 }
+
+      // 7: _.mean(array)  返回一个数组的平均值
+        _.mean([1, 2, 3, 4, 5]) // 3
+
+      // 8: _.meanBy(array, [iteratee=_.identity]) 条件筛选 返回平均值
+        _.meanBy([{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }], (o) => o.n) // 5
+
+      // 9: _.multiply(multiplier, multiplicand) 返回乘积
+        _.multiply(4, 6) // 24
+
+      // 10: _.round(number, [precision=0]) 四舍五入，可以传递保留小数位
+        _.round(4.001) // 4
+        _.round(4.123, 2) // 4.12 
+
+      // 11: _.subtratct(minuend, subtrahend)
+        _.subtract(6, 4) // 2
+
+      // 12: _.sum(array)
+        _.sum([4, 2, 8, 6]) // 20
+
+      // 13: _.sumBy(array, [iteratee=_.identity]) 条件累加
+        _.sumBy([{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }], (o) => o.n ) // 20
+
+      // 14: _.clamp(number, [lower], upper) 返回限制在 lower 和 upper 之间的值
+        _.clamp(10, -5, 5) // 5
+
+      // 15: _.inRange(number, [start=0], end) 返回值是一个布尔值true/false （ 检查 n 是否在 start 与 end 之间，但不包括 end。 如果 end 没有指定，那么 start 设置为0）
+        _.inRange(3, 2, 4) // true 
+        _.inRange(4, 8) // true
+        _.inRange(4, 2) // false
+        _.inRange(2, 2) // false 不包括end值
+        _.inRange(1.2, 2) // true 
+        _.inRange(5.2, 4) // false
+
+      // 16: '_.random([lower=0], [upper=1], [floating]) 返回一个随机数  
+      //                                                 产生一个包括 lower 与 upper 之间的数
+      //                                                 如果只提供一个参数返回一个0到提供数之间的数
+      //                                                 如果 floating 设为 true，或者 lower 或 upper 是浮点数，结果返回浮点数
+        _.random(0, 5) // 0 || 1 || 2 || 3 || 4 || 5  
+        _.random(5) // 0 || 1 || 2 || 3 || 4 || 5  
+        _.random(5, true) // 1.6947762559704294 || ...
+        _.random(1.2, 5.2) // 3.6947762559704294 || ...
 
   </script>
 </head>
