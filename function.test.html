@@ -7,7 +7,34 @@
   <title>Document</title>
   <script src="./lodash.js"></script>
   <script>
+    // 1: _.after(n, func)  返回新的限定函数 此方法创建一个函数，当他被调用n或更多次之后将马上触发func 
+      var saves = ['profile', 'settings']
+      var auxiliary = []
+      var count = 0
+
+      var done = _.after(saves.length, () => {
+        console.log(`${count}done saving!`)
+        console.log('--------------------')
+      }) // done 被调用两次 就会触发_.after 里面的回调函数
+
+      _.forEach(saves, function(type) {
+        count+=1
+        auxiliary.push({
+          type,
+          completed: done()
+        })
+      })
+
+    // 2: _.bind(func, thisArg, [partials]) 返回新的状态函数
+      var greet = function (greeting, punctuation) {
+        return greeting + ' ' + this.user + punctuation
+      }
+      var object = { 'user': 'fred' }
+      var bound = _.bind(greet, object, 'hi')
+      bound('!') // hi fred!
+      
     
+
   </script>
 </head>
 <body>
