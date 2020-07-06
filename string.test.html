@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lodash.js"></script>
+  <script>
+      // 1: _.camelCase([string='']) 转换为驼峰命名
+        _.camelCase('bar num') // barNum
+        _.camelCase('--fo-bar--') // foBar
+        _.camelCase('__FOO_BAR__') // fooBar
+      
+      // 2: _.capitalize([string='']) 字符串首字母大写其余字符全小写
+        _.capitalize('abjaja') // Abjaja
+
+      // 3： _.endsWith([string=''], [target], [position=string.length]) 如果字符串string以target字符串结尾，那么返回 true，否则返回 false
+        _.endsWith('abc', 'c') // true
+        _.endsWith('abc', 'b') // false
+
+      // 4: _.kebabCase([string='']) 表示将字符串按照横杠进行连接
+        _.kebabCase('wjk~name') // wjk-name
+        _.kebabCase('wcj-878@jsj') // wck-878-jsj
+        _.kebabCase('wjk,wcj') // wjk-wcj
+
+      // 5: _.lowerCase([string='']) 将字符串按照空格进行分割， 并且所有字符转换为小写
+        _.lowerCase('--Foo-Bar--') // 'foo bar'
+        _.lowerCase('fooBar') // 'foo bar'
+        _.lowerCase('__FOO_BAR__') // 'foo bar'
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
