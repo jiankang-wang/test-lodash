@@ -20,6 +20,7 @@
         _.endsWith('abc', 'b') // false
 
       // 4: _.kebabCase([string='']) 表示将字符串按照横杠进行连接
+      //    _.snakeCase([string= ''])表示将字符串按照下划线进行连接
         _.kebabCase('wjk~name') // wjk-name
         _.kebabCase('wcj-878@jsj') // wck-878-jsj
         _.kebabCase('wjk,wcj') // wjk-wcj
@@ -28,6 +29,39 @@
         _.lowerCase('--Foo-Bar--') // 'foo bar'
         _.lowerCase('fooBar') // 'foo bar'
         _.lowerCase('__FOO_BAR__') // 'foo bar'
+
+      // 6: _.lowerFirst([string='']) 将字符串的首字母转换为小写
+        _.lowerFirst('FRED') // fRED
+
+      // 7: _.pad([string=''], [length=0], [chars=' ']) 返回填充过的字符串(string字符串长度小于 length 则从左侧和右侧填充字符。 如果没法平均分配，则截断超出的长度)
+      //    尽可能的两个平均
+        _.pad('abc', 8) // --  abc    -- // 字符占位右侧居多
+        _.pad('abc', 8, '_-') // _-abc_-_-
+        _.pad('abc', 3) // abc
+
+      // 8: _.padEnd([string=''], [length=0], [chars=' ']) 返回填充过的字符串(单纯向右填充)
+      //    _.padStart([string=''], [length=0], [chars=' ']) 返回填充过的字符串(单纯向左填充)
+        _.padEnd('abc', 8) // --abc     --
+        _.padEnd('abc', 8, '_-') // abc_-_-_
+
+      // 9: _.parseInt(string, [radix=10])转换为数字， 默认是10进制
+        _.parseInt('08') // 8
+
+      // 10: _.repeat([string=''], [n=1]) // 返回重复后的字符串, 默认值是1   可以为0
+        _.repeat('abc', 2) // 'abcabc'
+        _.repeat('abc', 0) // ''
+
+      // 11: _.replace([string=''], pattern, replacement)  返回替换后的字符串
+        _.replace('Hi Fred', 'Fred', 'Barney')  // Hi Barney
+
+      // 12: _.split([string=''], separator, [limit]) 返回拆分字符串的数组 参数limit限制返回数组的长度也就是数组元素的个数
+        _.split('a-b-c', '-') // ['a','b', 'c']
+        _.split('a-b-c', '-', 2) // ['a', 'b']
+
+      // 13: _.startCase([string='']) 返回转换后的字符串
+        _.startCase('--foo-bar--') // 'Foo Bar'
+        _.startCase('fooBar')  // 'Foo Bar'
+        _.startCase('__FOO_BAR__') // 'Foo BAR'
 
 
   </script>
