@@ -16,6 +16,7 @@
         _.capitalize('abjaja') // Abjaja
 
       // 3： _.endsWith([string=''], [target], [position=string.length]) 如果字符串string以target字符串结尾，那么返回 true，否则返回 false
+      //     _.startsWith([string=''], [target], [position=string.length]) 如果字符串string以target字符串开头，那么返回 true，否则返回 false
         _.endsWith('abc', 'c') // true
         _.endsWith('abc', 'b') // false
 
@@ -63,6 +64,39 @@
         _.startCase('fooBar')  // 'Foo Bar'
         _.startCase('__FOO_BAR__') // 'Foo BAR'
 
+      // 14: _.template([string=''], [options={}]) 模版字符串
+        let compiled = _.template('hello <%= user %>!')
+        compiled({user: 'template'}) // hello template!
+      
+      // 15: _.toLower([string='']) 返回小写的字符串
+      //     _.toUpper([string='']) 返回大写的字符串
+        _.toLower('--najuHNk--') // --najuhnk--
+      
+      // 16: _.trim([string=''], [chars=whitespace]) 返回一个新的字符串（移除字符串的前后空格或者前后质指定的字符串）
+        _.trim('  abc  ') // 'abc'
+        _.trim('-_-abc-_-', '-_-') // 'abc'
+
+      // 17: _.trimEnd([string=''], [chars=whitespace]) 返回一个新的字符串 (移除字符串后边的或者后边指定的字符串) 
+      //     -.trimStart([string=''], [chars=whitespace]) 返回一个新的字符串 (移除字符串前面的或者前面指定的字符串)
+        _.trimEnd('  abc  ') // '  abc'
+        _.trimEnd('-_-abc-_-', '_-') // '-_-abc' 
+
+      // 18: _.truncate([string=''], [options={}]) 返回截断的字符串
+        _.truncate('hi-diddly-ho there, neighborino') // 'hi-diddly-ho there, neighbo...' 默认一共30个字符
+        _.truncate('hi-diddly-ho there, neighborino', {
+          'length': 24,
+          'separator': ' '
+        }) // 'hi-diddly-ho there,...'
+        _.truncate('hi-diddly-ho there, neighborino', {
+          'length': 24,
+          'separator': /,? +/
+        }) // 'hi-diddly-ho there...'
+        _.truncate('hi-diddly-ho there, neighborino', {
+          'omission': ' [...]'
+        }) // 'hi-diddly-ho there, neig [...]'
+
+      // 18: _.upperFirst([string='']) 转换字符串的首字母大写
+        _.upperFirst('react') // 'React'
 
   </script>
 </head>
