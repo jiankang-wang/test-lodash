@@ -10,6 +10,42 @@
     // 1: _.castArray(value) 强制将value转换为数组
       _.castArray('111') // ['111']
       _.castArray({demo: 'test'}) // [{ demo: 'test' }]
+    
+    // 2: _.clone(value)  浅拷贝[arrays、array buffers、 booleans、 date objects、maps、 numbers， Object 对象]
+    //    regexes, sets, strings, symbols, 以及 typed arrays
+    //    _.cloneDeep(value) 这个表示是深拷贝
+      const demo = [{demo: 1}, {demoTwo: 2}]
+      _.clone(demo) // [{ demo: 1 }, { demoTwo: 2 }]
+
+    // 3: _.eq(value, other) 比较两个值是否相等， 其实比较的是所处的内存空间
+      var value = { a: 1 }
+      var other = { a: 1 }
+      _.eq(value, other) // false
+      _.eq(value, value) // true
+      _.eq('a', 'a') // true
+      _.eq(NaN, NaN) // true
+      _.eq(undefined, undefined) // true
+      _.eq(null, null) // true
+
+    // 4: _.gt(value, other) 比较两个值的大小
+    //    _.gte(value, other) 比较value是否大于等于other
+      _.gt(3, 1) // true
+      _.gt(3, 3) // false
+      _.gt('3', 1) // true
+      _.gt(false, 1) // false
+      _.gt(1, false) // true
+    
+    // 5: _.isArray(value) 判断是否是一个数组
+    //    _.isArrayLike(value) 判断value值是否是类数组  注意【如果一个值被认为是类数组，那么它不是一个函数，并且value.length是个整数，大于等于 0，小于或等于 Number.MAX_SAFE_INTEGER】
+    //                      _.isArrayLike(document.body.children) 结果为true
+      _.isArray('abc') // false
+      _.isArray([1, 2, 3]) // true
+
+    // 6: _.isBoolean(value) 判断是否是一个布尔值
+      _.isBoolean(false) // true
+      _.isBoolean(null) // false
+
+      
   </script>
 </head>
 <body>
