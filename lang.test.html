@@ -45,6 +45,26 @@
       _.isBoolean(false) // true
       _.isBoolean(null) // false
 
+    // 7: _.isEmpty(value) 判断一个值是否是空值【判断的依据是除非是有枚举属性的对象，length 大于 0 的 arguments object, array, string 或类jquery选择器】
+      _.isEmpty(null) // true
+      _.isEmpty(true) // true
+      _.isEmpty(1) //true
+      _.isEmpty([1, 2, 3]) // false
+      _.isEmpty({ a: 1 }) // false
+      _.isEmpty('aaa') // false
+
+    // 8: _.isEqual(value, other) 比较两个值
+      _.isEqual({a: '1'}, { a: '1'}) // true
+    // { a: '1' } === { a: '1' } false
+
+    // 9: _.isInteger(value) 检查value值是否是整数
+      _.isInteger(3) // true
+      _.isInteger(3.3) // false
+
+    //10: _.isMatch(object, source) 如果object 匹配则返回true 否则返回false  执行一个深度比较来确定 object 是否含有和 source 完全相等的属性值
+      var object = { 'a': 1, 'b': 2 }
+      _.isMatch(object, { b: 2 }) // true
+      _.isMatch(object, { b: 1 }) // false
       
   </script>
 </head>
